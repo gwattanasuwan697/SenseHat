@@ -32,7 +32,7 @@ DIGIT = [0,0,1,0,0,1,0,0,1,0,0,1,0,0,1, #1
          1,1,1,1,0,1,1,1,1,1,0,1,1,1,1, #8
          1,1,1,1,0,1,1,1,1,0,0,1,1,1,1] #9
 
-def dotTimer(n):
+def dotTimer(n): # Dot Timer List Creator
   temp = []
   for i in range(0,n):
     temp.append(1)

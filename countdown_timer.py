@@ -1,5 +1,5 @@
 from sense_hat import SenseHat
-import time
+from time import sleep
 
 sense = SenseHat()
 
@@ -43,17 +43,17 @@ time = int(input("Set timer (sec): "))
 sec = 0
 while(time > 0):
     
-    if not time <= 60: # Time more than 60 / Dot Timer Required
-        dot = time / 60
-        dotTimerPixel = ([1]*dot) + ([0]*(16-dot))
-    else:
-        dotTimerPixel = [0]*16 # Time less than or equal to 60
-    
     if time % 60 == 0:
       time -= 60
       sec += 60
     else:
       sec = time % 60
+    
+    if not time <= 60: # Time more than 60 / Dot Timer Required
+        dot = int(time / 60)
+        dotTimerPixel = ([1]*dot) + ([0]*(16-dot))
+    else:
+        dotTimerPixel = [0]*16 # Time less than or equal to 60
     
     first_digit = int(sec / 10)
     second_digit = sec-(int(sec/10)*10)
@@ -71,4 +71,4 @@ while(time > 0):
   
     pixels = dotTimerPixel + [0]*8 + numbers
     show_pixel(pixels)
-    time.sleep(1)
+    sleep(1)

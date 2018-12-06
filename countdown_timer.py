@@ -49,16 +49,10 @@ def show_numbers(num):
     pixels = [0]*24 + numbers
     show_pixels(pixels)
 
-# MAIN         
+# MAIN
 
-while(true):
-    min_sel = 0
-    
-    show_numbers()
-
-      
-#print("Timer (MAX. 960 secs)")
-#time = int(input("Set timer (sec): "))
+print("Timer (MAX. 960 secs)")
+time = int(input("Set timer (sec): "))
 
 sec = 0
 while(time > 0):

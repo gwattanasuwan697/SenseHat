@@ -5,7 +5,7 @@ sense = SenseHat()
 
 sense.clear()
 
-color = (155,155,0)
+color = (200,100,0)
            
 def show_pixels(numbers):
   for y in range(1,9):
@@ -29,7 +29,6 @@ def get_digit(num):
     first_digit = int(num / 10)
     second_digit = num-(int(num/10)*10)
     return (first_digit, second_digit)
-    
 
 def show_numbers(num):
     
@@ -48,52 +47,5 @@ def show_numbers(num):
     
     pixels = [0]*24 + numbers
     show_pixels(pixels)
-
-# MAIN         
-
-while(true):
-    min_sel = 0
     
-    show_numbers()
-
-      
-#print("Timer (MAX. 960 secs)")
-#time = int(input("Set timer (sec): "))
-
-sec = 0
-while(time > 0):
-    
-    if time % 60 == 0:
-      sec += 60
-    else:
-      sec = time % 60
-    
-    if not time <= 60: # Time more than 60 / Dot Timer Required
-        dot = int(time / 60)
-        dotTimerPixel = ([1]*dot) + ([0]*(16-dot))
-    else:
-        dotTimerPixel = [0]*16 # Time less than or equal to 60
-    
-    first_digit = int(sec / 10)
-    second_digit = sec-(int(sec/10)*10)
-    
-    numbers = []
-    for j in range(0,5):
-        temp = []
-        if first_digit != 0:
-            temp_digit_first = DIGIT[15*first_digit + (j*3) : 15*first_digit + (j*3) +3]
-        else:
-            temp_digit_first = [0] * 3
-        temp_digit_second = DIGIT[15*second_digit + (j*3) : 15*second_digit + (j*3) +3]
-        temp = temp + [0] + temp_digit_first + [0] + temp_digit_second
-        numbers += temp
-    
-    sec -= 1
-    time -= 1
-  
-    pixels = dotTimerPixel + [0]*8 + numbers
-    show_pixels(pixels)
-    sleep(1)
-           
-smile = [0]*8 + ([0,1,1,0]*4) + [0]*8 + ([0,1,1,0]*2) + [0] + [1]*6 + [0]*3 + [1]*4 + [0]*10
-show_pixels(smile)
+show_numbers(52)

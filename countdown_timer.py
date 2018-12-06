@@ -72,3 +72,6 @@ while(time > 0):
     pixels = dotTimerPixel + [0]*8 + numbers
     show_pixels(pixels)
     sleep(1)
+           
+smile = [0]*8 + ([0,1,1,0]*4) + [0]*8 + ([0,1,1,0]*2) + [0] + [1]*6 + [0]*3 + [1]*4 + [0]*10
+show_pixels(smile)

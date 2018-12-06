@@ -5,7 +5,7 @@ sense = SenseHat()
 
 sense.clear()
 
-color = (0,0,255)
+color = (0,255,0)
 
 '''numbers = [1,1,1,1,1,1,1,1,
            1,1,1,1,1,1,1,1,
@@ -15,10 +15,8 @@ color = (0,0,255)
            1,1,1,0,1,0,1,1,
            1,0,0,0,1,0,0,0,
            1,1,1,1,1,1,1,1]'''
-
-pixels = []
-
-def show_pixel(numbers):
+           
+def show_pixels(numbers):
   for y in range(1,9): #Set Pixels
       for x in range(0,8):
           pixel = numbers[((y-1)*8)+x]
@@ -44,7 +42,6 @@ sec = 0
 while(time > 0):
     
     if time % 60 == 0:
-      time -= 60
       sec += 60
     else:
       sec = time % 60
@@ -61,7 +58,10 @@ while(time > 0):
     numbers = []
     for j in range(0,5):
         temp = []
-        temp_digit_first = DIGIT[15*first_digit + (j*3) : 15*first_digit + (j*3) +3]
+        if first_digit != 0:
+            temp_digit_first = DIGIT[15*first_digit + (j*3) : 15*first_digit + (j*3) +3]
+        else:
+            temp_digit_first = [0] * 3
         temp_digit_second = DIGIT[15*second_digit + (j*3) : 15*second_digit + (j*3) +3]
         temp = temp + [0] + temp_digit_first + [0] + temp_digit_second
         numbers += temp
@@ -70,5 +70,5 @@ while(time > 0):
     time -= 1
   
     pixels = dotTimerPixel + [0]*8 + numbers
-    show_pixel(pixels)
+    show_pixels(pixels)
     sleep(1)

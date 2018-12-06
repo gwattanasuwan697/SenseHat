@@ -5,7 +5,7 @@ sense = SenseHat()
 
 sense.clear()
 
-color = (0,255,0)
+color = (155,155,0)
            
 def show_pixels(numbers):
   for y in range(1,9):

@@ -8,10 +8,10 @@ sense.clear()
 color = (200,100,0)
            
 def show_pixels(numbers):
-  for y in range(1,9):
-      for x in range(0,8):
-          pixel = numbers[((y-1)*8)+x]
-          sense.set_pixel(x, y-1, pixel*color[0], pixel*color[1], pixel*color[2])
+    for y in range(1,9):
+        for x in range(0,8):
+            pixel = numbers[((y-1)*8)+x]
+            sense.set_pixel(x, y-1, pixel*color[0], pixel*color[1], pixel*color[2])
 
 DIGIT = [1,1,1,1,0,1,1,0,1,1,0,1,1,1,1, #0
          0,0,1,0,0,1,0,0,1,0,0,1,0,0,1, #1

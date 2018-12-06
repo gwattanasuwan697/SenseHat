@@ -13,6 +13,10 @@ def show_pixels(numbers):
           pixel = numbers[((y-1)*8)+x]
           if pixel == 2:
               sense.set_pixel(x, y-1, 0, 255, 0)
+          elif pixel == 3:
+              sense.set_pixel(x, y-1, 255, 165, 0)
+          elif pixel == 4:
+              sense.set_pixel(x, y-1, 255, 0, 0)
           else:
               sense.set_pixel(x, y-1, pixel*color[0], pixel*color[1], pixel*color[2])
 
@@ -64,11 +68,11 @@ def gen_dotTimerPixel(time):
     
     mins = int(time / 60)
     
-    pi_mins = [1]*mins + [0]*(8-mins)
-    pi_five_mins = [1]*five_mins + [0]*(8-five_mins)
-    pi_half_hour = [1]*half_hour + [0]*(8-half_hour)
+    pi_mins = [2]*mins + [0]*(8-mins)
+    pi_five_mins = [3]*five_mins + [0]*(8-five_mins)
+    pi_half_hour = [4]*half_hour + [0]*(8-half_hour)
     return pi_mins + pi_five_mins + pi_half_hour
-
+    
 min_sel = 0
 show_numbers(min_sel)
 

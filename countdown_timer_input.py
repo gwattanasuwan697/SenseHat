@@ -48,4 +48,16 @@ def show_numbers(num):
     pixels = [0]*24 + numbers
     show_pixels(pixels)
     
-show_numbers(52)
+min_sel = 0
+
+while(True):
+    for event in sense.stick.get_events():
+        if event.action == "pressed":
+            if event.direction == "up": #Add overflow detection
+                min_sel += 1
+            elif event.direction == "down":
+                min_sel -= 1
+            elif event.direction == "middle":
+                pass
+        show_numbers(min_sel)
+            

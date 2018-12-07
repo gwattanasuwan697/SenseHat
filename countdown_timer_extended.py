@@ -11,12 +11,13 @@ def show_pixels(numbers):
   for y in range(1,9):
       for x in range(0,8):
           pixel = numbers[((y-1)*8)+x]
-          if pixel == 2:
-              sense.set_pixel(x, y-1, 0, 255, 0)
-          elif pixel == 3:
-              sense.set_pixel(x, y-1, 255, 165, 0)
-          elif pixel == 4:
-              sense.set_pixel(x, y-1, 255, 0, 0)
+          if pixel > 1:
+              if pixel == 2:
+                  sense.set_pixel(x, y-1, 0, 255, 0)
+              elif pixel == 3:
+                  sense.set_pixel(x, y-1, 255, 165, 0)
+              elif pixel == 4:
+                  sense.set_pixel(x, y-1, 255, 0, 0)
           else:
               sense.set_pixel(x, y-1, pixel*color[0], pixel*color[1], pixel*color[2])
 
@@ -33,9 +34,13 @@ DIGIT = [1,1,1,1,0,1,1,0,1,1,0,1,1,1,1, #0
 
 def get_digit(num):
     
+    if num == 60:
+      return (0,0)
     first_digit = int(num / 10)
     second_digit = num-(int(num/10)*10)
     return (first_digit, second_digit)
+
+input = 0
 
 def show_numbers(num):
     
@@ -52,7 +57,16 @@ def show_numbers(num):
         temp = temp + [0] + temp_digit_first + [0] + temp_digit_second
         numbers += temp
     
-    pixels = [0]*24 + numbers
+    emp = [0]*24
+    if input != 0:
+        if input == 1:
+            emp = [4]*5+[0]*5+[4]+[0]*5+[4]*5+[0]*3
+        elif input == 2:
+            emp = [3]*5+[0]*4+[3]+[0]*6+[3]*5+[0]*3
+        elif input == 3:
+            emp = [2]+[0]+[2]*3+[0]*3+[2,0]*3+[0]*2+[2]*3+[0]+[2]+[0]*3
+    
+    pixels = emp + numbers
     show_pixels(pixels)
     
 def gen_dotTimerPixel(time):
@@ -72,16 +86,39 @@ def gen_dotTimerPixel(time):
     pi_five_mins = [3]*five_mins + [0]*(8-five_mins)
     pi_half_hour = [4]*half_hour + [0]*(8-half_hour)
     return pi_mins + pi_five_mins + pi_half_hour
-    
-min_sel = 0
-show_numbers(min_sel)
+ 
+hr_sel = 0
+input = 1
+show_numbers(hr_sel)
 
 c = True
 while(c):
     for event in sense.stick.get_events():
         if event.action == "pressed":
             if event.direction == "up":
-                if min_sel < 50:
+                if hr_sel < 4:
+                    hr_sel += 1
+            elif event.direction == "down":
+                if hr_sel > 0:
+                    hr_sel -= 1
+            elif event.direction == "middle":
+                c = False
+                break
+        show_numbers(hr_sel)
+
+c = True
+min_sel = 0
+if hr_sel == 4:
+    c = False
+else:
+    input = 2
+    show_numbers(min_sel)
+  
+while(c):
+    for event in sense.stick.get_events():
+        if event.action == "pressed":
+            if event.direction == "up":
+                if min_sel < 59:
                     min_sel += 1
             elif event.direction == "down":
                 if min_sel > 0:
@@ -91,10 +128,14 @@ while(c):
                 break
         show_numbers(min_sel)
         
-sec_sel = 0
-show_numbers(sec_sel)
-
 c = True
+sec_sel = 0
+if hr_sel == 4:
+    c = False
+else:
+    input = 3
+    show_numbers(sec_sel)
+  
 while(c):
     for event in sense.stick.get_events():
         if event.action == "pressed":
@@ -109,7 +150,8 @@ while(c):
                 break
         show_numbers(sec_sel)
         
-time = (min_sel*60) + sec_sel
+time = (hr_sel*3600) + (min_sel*60) + sec_sel
+input = 0
 
 sec = 0
 while(time > 0):

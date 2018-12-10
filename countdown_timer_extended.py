@@ -98,9 +98,13 @@ while(c):
             if event.direction == "up":
                 if hr_sel < 4:
                     hr_sel += 1
+                elif hr_sel == 4:
+                    hr_sel = 0
             elif event.direction == "down":
                 if hr_sel > 0:
                     hr_sel -= 1
+                elif hr_sel == 0:
+                    hr_sel = 4
             elif event.direction == "middle":
                 c = False
                 break
@@ -120,9 +124,13 @@ while(c):
             if event.direction == "up":
                 if min_sel < 59:
                     min_sel += 1
+                elif min_sel == 59:
+                    min_sel = 0
             elif event.direction == "down":
                 if min_sel > 0:
                     min_sel -= 1
+                elif min_sel == 0:
+                    min_sel = 59
             elif event.direction == "middle":
                 c = False
                 break
@@ -142,9 +150,13 @@ while(c):
             if event.direction == "up":
                 if sec_sel < 59:
                     sec_sel += 1
+                elif sec_sel == 59:
+                    sec_sel = 0
             elif event.direction == "down":
                 if sec_sel > 0:
                     sec_sel -= 1
+                elif sec_sel == 0:
+                    sec_sel = 59
             elif event.direction == "middle":
                 c = False
                 break

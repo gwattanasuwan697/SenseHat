@@ -178,7 +178,7 @@ t1 = Thread(target = check_stop)
 sec = 0
 while(time > 0):
     
-    #Add Threading
+    t1.start()
     
     if time % 60 == 0:
       sec += 60

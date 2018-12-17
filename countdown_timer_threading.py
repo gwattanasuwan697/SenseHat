@@ -172,7 +172,7 @@ def check_stop():
         for event in sense.stick.get_events():
             if event.action == "pressed":
                 if event.direction == "middle":
-                    time = 0
+                    time = -1
         sleep(1)
 
 t1 = Thread(target = check_stop)
@@ -207,6 +207,17 @@ while(time > 0):
     pixels = dotTimerPixel + numbers
     show_pixels(pixels)
     sleep(1)
-           
-smile = [0]*8 + ([0,1,1,0]*4) + [0]*8 + ([0,1,1,0]*2) + [0] + [1]*6 + [0]*3 + [1]*4 + [0]*10
-show_pixels(smile)
+
+if time == 0:
+    smile = [0]*8 + ([0,1,1,0]*4) + [0]*8 + ([0,1,1,0]*2) + [0] + [1]*6 + [0]*3 + [1]*4 + [0]*10
+    show_pixels(smile)
+elif time == -1:
+    stop = [4,0,0,0,0,0,0,4,
+            0,4,0,0,0,0,4,0,
+            0,0,4,0,0,4,0,0,
+            0,0,0,4,4,0,0,0,
+            0,0,0,4,4,0,0,0,
+            0,0,4,0,0,4,0,0,
+            0,4,0,0,0,0,4,0,
+            4,0,0,0,0,0,0,4,]
+    show_pixels(stop)

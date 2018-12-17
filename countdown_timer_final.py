@@ -3,7 +3,6 @@ from time import sleep
 from threading import Thread
 
 sense = SenseHat()
-
 sense.clear()
 
 color = (255,255,255)

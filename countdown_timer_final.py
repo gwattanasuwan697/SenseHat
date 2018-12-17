@@ -38,7 +38,6 @@ while not final_stop:
                   sense.set_pixel(x, y-1, pixel*color[0], pixel*color[1], pixel*color[2])
 
     def get_digit(num):
-        
         if num == 60:
           return (0,0)
         first_digit = int(num / 10)
@@ -48,7 +47,6 @@ while not final_stop:
     input = 0
 
     def show_numbers(num):
-        
         digit = get_digit(num)
         
         numbers = []
@@ -75,7 +73,6 @@ while not final_stop:
         show_pixels(pixels)
         
     def gen_dotTimerPixel(time):
-        
         if time <= 60:
           return [0]*24
         
@@ -184,7 +181,6 @@ while not final_stop:
 
     sec = 0
     while(time > 0):
-        
         if time % 60 == 0:
           sec += 60
         else:

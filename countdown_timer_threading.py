@@ -167,18 +167,19 @@ time = (hr_sel*3600) + (min_sel*60) + sec_sel
 input = 0
 
 def check_stop():
+    global time
     while (time > 0):
         for event in sense.stick.get_events():
             if event.action == "pressed":
                 if event.direction == "middle":
                     time = 0
+        sleep(1)
 
 t1 = Thread(target = check_stop)
+t1.start()
 
 sec = 0
 while(time > 0):
-    
-    t1.start()
     
     if time % 60 == 0:
       sec += 60

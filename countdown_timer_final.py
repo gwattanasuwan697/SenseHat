@@ -19,7 +19,6 @@ DIGIT = [1,1,1,1,0,1,1,0,1,1,0,1,1,1,1, #0
          1,1,1,1,0,1,1,1,1,0,0,1,1,1,1] #9
 
 time = 0
-
 final_stop = False
 
 while not final_stop:
